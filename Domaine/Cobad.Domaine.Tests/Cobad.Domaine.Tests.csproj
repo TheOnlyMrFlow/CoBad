@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Cobad.Domaine\Cobad.Domaine.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Gestionaires\Createurs\" />
+  </ItemGroup>
+
 </Project>

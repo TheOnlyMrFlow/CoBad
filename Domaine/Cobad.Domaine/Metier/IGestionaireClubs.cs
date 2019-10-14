@@ -8,6 +8,6 @@ namespace Cobad.Domaine.Metier
     {
         ICreateurClub ObtenirCreateurDeClub();
         IFiltreClub ObtenirFiltreDeClub();
-        IModificateurClub ObtenirModificateurDeClub();
+        IModificateurClub ObtenirModificateurDeClub(string numeroDuClubAModifier);
     }
 }

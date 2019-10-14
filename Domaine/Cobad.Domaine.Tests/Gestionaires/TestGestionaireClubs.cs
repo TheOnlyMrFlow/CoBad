@@ -30,7 +30,7 @@ namespace Cobad.Domaine.Tests
         [Fact]
         public void obtenir_modificateur_de_club_renvoie_un_modificateur_de_club()
         {
-            Assert.IsType<ModificateurClub>(gestionaireClubs.ObtenirModificateurDeClub());
+            Assert.IsType<ModificateurClub>(gestionaireClubs.ObtenirModificateurDeClub(It.IsAny<string>()));
         }
     }
 }

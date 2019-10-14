@@ -8,7 +8,7 @@ namespace Cobad.CLI.Commandes
 {
     class AjouterPersonnel
     {
-        public int Run(IModificateurClub modificateurClub)
+        public int Run(IGestionaireClubs gestionaireClubs)
         {
             throw new NotImplementedException();
         }

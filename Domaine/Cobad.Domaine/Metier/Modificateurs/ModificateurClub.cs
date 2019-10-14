@@ -1,5 +1,6 @@
 ﻿using Cobad.Domaine.PortsSecondaires.Persistence;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,27 +13,31 @@ namespace Cobad.Domaine.Metier.Modificateurs
 
         private ICollection<Personnel> personnelAjoutes = new List<Personnel>();
         private ISet<string> personnelRetires = new HashSet<string>();
+        private Club clubAModiifer;
 
-        public ModificateurClub(IRepertoireClubs repertoireClubs)
+
+        public ModificateurClub(IRepertoireClubs repertoireClubs, string numeroDuClubAModifier)
         {
             this.repertoireClubs = repertoireClubs;
+            this.clubAModiifer = repertoireClubs.ObtenirClubParNumero(numeroDuClubAModifier);
         }
 
         public IModificateurClub AjouterPersonnel(Personnel personnel)
         {
-            personnelAjoutes.Add(personnel);
+            clubAModiifer.champsPropresACobad.Personnel.Add(personnel);
             return this;
         }
 
         public IModificateurClub RetirerPersonnel(string nom)
         {
-            personnelRetires.Add(nom);
+            clubAModiifer.champsPropresACobad.Personnel.RemoveAll(personnel => personnel.Nom == nom);
             return this;
         }
 
         public Club Sauvegarder()
         {
-            throw new NotImplementedException();
+            repertoireClubs.MettreAJour(clubAModiifer);
+            return clubAModiifer;
         }
     }
 }

@@ -28,9 +28,9 @@ namespace Cobad.Domaine.Metier
             return new FiltreClub(this.repertoireClubs);
         }
 
-        public IModificateurClub ObtenirModificateurDeClub()
+        public IModificateurClub ObtenirModificateurDeClub(string numeroDuClubAModifier)
         {
-            return new ModificateurClub(this.repertoireClubs);
+            return new ModificateurClub(this.repertoireClubs, numeroDuClubAModifier);
         }
     }
 }

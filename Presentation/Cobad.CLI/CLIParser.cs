@@ -35,10 +35,10 @@ namespace Cobad.CLI
                 .MapResult(
                     (AjouterCollectif cmd) => cmd.Run(gestionaireCollectifs.ObtenirCreateurDeCollectif()),
                     (AjouterContactJoueur cmd) => cmd.Run(gestionaireJoueurs.ObtenirModificateurDeJoueur()),
-                    (AjouterPersonnel cmd) => cmd.Run(gestionaireClubs.ObtenirModificateurDeClub()),
+                    (AjouterPersonnel cmd) => cmd.Run(gestionaireClubs),
                     (ListerClubs cmd) => cmd.Run(gestionaireClubs.ObtenirFiltreDeClub()),
                     (ListerJoueurs cmd) => cmd.Run(gestionaireJoueurs.ObtenirFiltreDeJoueur()),
-                    (Synchroniser cmd) => cmd.Run(gestionaireClubs.ObtenirModificateurDeClub(), gestionaireJoueurs.ObtenirModificateurDeJoueur()),
+                    //(Synchroniser cmd) => cmd.Run(gestionaireClubs.ObtenirModificateurDeClub(), gestionaireJoueurs.ObtenirModificateurDeJoueur()),
                     errs => 1);
         }
 

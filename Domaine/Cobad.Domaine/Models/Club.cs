@@ -57,9 +57,19 @@ namespace Cobad.Domaine
 
         public class ChampsCobad
         {
+
+            public ChampsCobad() { }
+
+            public ChampsCobad(List<Personnel> personnel)
+            {
+                Personnel = personnel;
+            }
+
             public List<Personnel> Personnel { get; set; } = new List<Personnel>();
 
         }
+
+
 
         public ChampsPoona champsPropresAPoona;
         public ChampsCobad champsPropresACobad;
