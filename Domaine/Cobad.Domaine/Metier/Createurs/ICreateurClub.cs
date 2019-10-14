@@ -2,7 +2,7 @@
 {
     public interface ICreateurClub
     {
-        Club Creer();
         CreateurClub DontLesChampsPoonaSont(Club.ChampsPoona champsPoona);
+        Club Creer();
     }
 }

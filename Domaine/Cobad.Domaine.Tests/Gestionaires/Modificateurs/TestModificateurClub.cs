@@ -14,7 +14,7 @@ namespace Cobad.Domaine.Tests
     {
         private IGestionaireClubs gestionaireClubs;
 
-        private Exception ExceptionThrownIfNotFound = new Exception();
+        private Exception ExceptionSiExistePas = new Exception();
 
         private Personnel personnelDeDepart;
 
@@ -51,7 +51,7 @@ namespace Cobad.Domaine.Tests
 
             mockRepertoireClub
                 .Setup(x => x.ObtenirClubParNumero(It.IsAny<string>()))
-                .Throws(ExceptionThrownIfNotFound);
+                .Throws(ExceptionSiExistePas);
 
             mockRepertoireClub
                 .Setup(x => x.ObtenirClubParNumero(club.champsPropresAPoona.Numero))
@@ -72,7 +72,7 @@ namespace Cobad.Domaine.Tests
         public void leve_une_exception_si_club_existe_pas()
         {
             Exception e = Assert.Throws<Exception>(() => gestionaireClubs.ObtenirModificateurDeClub("67876"));
-            Assert.Equal(e, ExceptionThrownIfNotFound);
+            Assert.Equal(e, ExceptionSiExistePas);
         }
 
         [Fact]
