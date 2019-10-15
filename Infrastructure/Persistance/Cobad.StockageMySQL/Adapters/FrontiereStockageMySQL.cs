@@ -7,16 +7,21 @@ namespace Cobad.StockageMySQL.Adapters
 {
     public class FrontiereStockageMySQL : IFrontierePersistance
     {
-        public FrontiereStockageMySQL()
+        public FrontiereStockageMySQL(string connectionString)
         {
             LinqToDB.Common.Configuration.Linq.AllowMultipleQuery = true;
+            DBConnection.SetConnectionString(connectionString);
+
+            this.RepertoireClubs = new RepertoireClubs();
+            this.RepertoireCollectifs = new RepertoireCollectifs();
+            this.RepertoireJoueurs = new RepertoireJoueurs();
         }
 
-        public IRepertoireClubs RepertoireClubs => throw new NotImplementedException();
+        public IRepertoireClubs RepertoireClubs { get; private set; }
 
-        public IRepertoireCollectifs RepertoireCollectifs => throw new NotImplementedException();
+        public IRepertoireCollectifs RepertoireCollectifs { get; private set; }
 
-        public IRepertoireJoueurs RepertoireJoueurs => throw new NotImplementedException();
+        public IRepertoireJoueurs RepertoireJoueurs { get; private set; }
     }
 
 

@@ -2,8 +2,9 @@
 {
     public interface IModificateurJoueur
     {
-        IModificateurJoueur SetMail(string mail);
-        IModificateurJoueur SetTelephone(string telephone);
+        IModificateurJoueur ModifierLesChampsPoona(Joueur.ChampsPoona champsPoona);
+        IModificateurJoueur ModifierMail(string mail);
+        IModificateurJoueur ModifierTelephone(string telephone);
         Joueur Sauvegarder();
     }
 }

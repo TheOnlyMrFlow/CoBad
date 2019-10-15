@@ -24,22 +24,29 @@ namespace Cobad.Domaine.Metier.Modificateurs
         private bool sauvegarderTelephone = false;
         private string telephone;
 
-        public IModificateurJoueur SetMail(string mail)
+        public IModificateurJoueur ModifierLesChampsPoona(Joueur.ChampsPoona champsPoona)
         {
-            sauvegarderMail = true;
-            this.mail = mail;
+            joueurAModifier.ChampsPropresAPoona = champsPoona;
             return this;
         }
 
-        public IModificateurJoueur SetTelephone(string telephone)
+        public IModificateurJoueur ModifierMail(string mail)
         {
-            sauvegarderTelephone = true;
-            this.telephone = telephone;
+            joueurAModifier.Mail = mail;
+            return this;
+        }
+
+        public IModificateurJoueur ModifierTelephone(string telephone)
+        {
+            joueurAModifier.Tel = telephone;
             return this;
         }
         public Joueur Sauvegarder()
         {
-            throw new NotImplementedException();
+            repertoireJoueurs.MettreAJour(joueurAModifier);
+            return joueurAModifier;
         }
+
+       
     }
 }

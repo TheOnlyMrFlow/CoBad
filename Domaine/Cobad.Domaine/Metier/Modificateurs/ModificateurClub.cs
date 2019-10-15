@@ -13,6 +13,12 @@ namespace Cobad.Domaine.Metier.Modificateurs
 
         private Club clubAModifier;
 
+        public IModificateurClub ModifierLesChampsPoona(Club.ChampsPoona champsPoona)
+        {
+            this.clubAModifier.champsPropresAPoona = champsPoona;
+            return this;
+        }
+
         internal ModificateurClub(IRepertoireClubs repertoireClubs, string numeroDuClubAModifier)
         {
             this.repertoireClubs = repertoireClubs;
@@ -24,6 +30,7 @@ namespace Cobad.Domaine.Metier.Modificateurs
             clubAModifier.Personnel.Add(personnel);
             return this;
         }
+
 
         public IModificateurClub RetirerPersonnel(string nom)
         {

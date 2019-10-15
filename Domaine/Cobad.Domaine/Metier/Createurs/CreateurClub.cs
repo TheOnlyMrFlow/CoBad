@@ -17,13 +17,13 @@ namespace Cobad.Domaine.Metier.Createurs
             this.repertoireClubs = repertoireClubs;
         }
 
-        public CreateurClub DontLeNumeroEst(string numero)
+        public ICreateurClub DontLeNumeroEst(string numero)
         {
             this.numero = numero;
             return this;
         }
 
-        public CreateurClub DontLesChampsPoonaSont(Club.ChampsPoona champsPoona)
+        public ICreateurClub DontLesChampsPoonaSont(Club.ChampsPoona champsPoona)
         {
             this.champsPoona = champsPoona;
             return this;
@@ -37,7 +37,7 @@ namespace Cobad.Domaine.Metier.Createurs
                 throw new DuplicationException();
 
             var club = new Club(numero, champsPoona);
-            repertoireClubs.MettreAJour(club);
+            repertoireClubs.Ajouter(club);
             return club;
         }
     }

@@ -8,7 +8,7 @@ namespace Cobad.CLI.Commandes
 {
     class AjouterContactJoueur
     {
-        public int Run(IModificateurJoueur modificateurJoueur)
+        public int Run(IGestionaireJoueurs gestionaireJoueurs)
         {
             throw new NotImplementedException();
         }

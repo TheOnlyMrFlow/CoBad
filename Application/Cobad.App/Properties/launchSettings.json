@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Cobad.App": {
+      "commandName": "Project",
+      "commandLineArgs": "sync -c \"C:\\Users\\comte\\Documents\\Kata Atelier\\25092019_clubs.csv\" -j \"C:\\Users\\comte\\Documents\\Kata Atelier\\25092019_jeunes.csv\" "
+    }
+  }
+}

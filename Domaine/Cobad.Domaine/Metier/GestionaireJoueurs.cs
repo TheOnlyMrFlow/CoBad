@@ -12,14 +12,16 @@ namespace Cobad.Domaine.Metier
     public class GestionaireJoueurs : IGestionaireJoueurs
     {
         IRepertoireJoueurs repertoireJoueurs;
-        internal GestionaireJoueurs(IRepertoireJoueurs repertoireJoueurs)
+        IRepertoireClubs repertoireClubs;
+        internal GestionaireJoueurs(IRepertoireJoueurs repertoireJoueurs, IRepertoireClubs repertoireClubs)
         {
             this.repertoireJoueurs = repertoireJoueurs;
+            this.repertoireClubs = repertoireClubs;
         }
 
         public ICreateurJoueur ObtenirCreateurDeJoueur()
         {
-            return new CreateurJoueur(repertoireJoueurs);
+            return new CreateurJoueur(repertoireJoueurs, repertoireClubs);
         }
 
         public IFiltreJoueur ObtenirFiltreDeJoueur()
@@ -29,7 +31,7 @@ namespace Cobad.Domaine.Metier
 
         public IModificateurJoueur ObtenirModificateurDeJoueur(int licenseDuJoueurAModifier)
         {
-            if (!repertoireJoueurs.Existe(licenseDuJoueurAModifier))
+            if (! repertoireJoueurs.Existe(licenseDuJoueurAModifier))
                 throw new ElementNonExistantException();
 
             return new ModificateurJoueur(this.repertoireJoueurs, licenseDuJoueurAModifier);

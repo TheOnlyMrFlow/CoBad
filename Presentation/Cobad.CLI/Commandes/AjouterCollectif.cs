@@ -8,7 +8,7 @@ namespace Cobad.CLI.Commandes
 {
     class AjouterCollectif
     {
-        public int Run(ICreateurCollectif createurColelctif)
+        public int Run(IGestionaireCollectifs gestionaireCollectifs)
         {
             throw new NotImplementedException();
         }

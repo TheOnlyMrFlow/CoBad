@@ -1,7 +1,9 @@
 ﻿using System;
+using AccesseurPoonaCSV;
 using Cobad.CLI.Commandes;
 using Cobad.Domaine;
 using Cobad.Domaine.Metier;
+using Cobad.Domaine.PortsSecondaires.AccesPoona;
 using CommandLine;
 
 namespace Cobad.CLI
@@ -12,35 +14,57 @@ namespace Cobad.CLI
         private IGestionaireClubs gestionaireClubs;
         private IGestionaireJoueurs gestionaireJoueurs;
         private IGestionaireCollectifs gestionaireCollectifs;
+        private IAccesseurPoona accesseurPoona;
 
-        public CLIParser(FrontiereCobad cobadBoundary)
+        public CLIParser(FrontiereCobad frontiereCobad)
         {
-            this.gestionaireClubs = cobadBoundary.GestionaireClubs;
-            this.gestionaireCollectifs = cobadBoundary.GestionaireCollectifs;
-            this.gestionaireJoueurs = cobadBoundary.GestionaireJoueurs;
+            this.gestionaireClubs = frontiereCobad.GestionaireClubs;
+            this.gestionaireCollectifs = frontiereCobad.GestionaireCollectifs;
+            this.gestionaireJoueurs = frontiereCobad.GestionaireJoueurs;
+            this.accesseurPoona = frontiereCobad.AccesseurPoona;
         }
 
         public int Parse(string[] args)
         {            
 
             return
-                Parser.Default.
-                ParseArguments<
+                Parser
+                .Default
+                .ParseArguments<
                     AjouterCollectif,
                     AjouterContactJoueur,
                     AjouterPersonnel,
                     ListerClubs,
                     ListerJoueurs,
-                    Synchroniser>(args)
+                    SynchroniserParCSV>(args)
                 .MapResult(
-                    (AjouterCollectif cmd) => cmd.Run(gestionaireCollectifs.ObtenirCreateurDeCollectif()),
-                    (AjouterContactJoueur cmd) => cmd.Run(gestionaireJoueurs.ObtenirModificateurDeJoueur()),
+                    (AjouterCollectif cmd) => cmd.Run(gestionaireCollectifs),
+                    (AjouterContactJoueur cmd) => cmd.Run(gestionaireJoueurs),
                     (AjouterPersonnel cmd) => cmd.Run(gestionaireClubs),
                     (ListerClubs cmd) => cmd.Run(gestionaireClubs.ObtenirFiltreDeClub()),
                     (ListerJoueurs cmd) => cmd.Run(gestionaireJoueurs.ObtenirFiltreDeJoueur()),
-                    //(Synchroniser cmd) => cmd.Run(gestionaireClubs.ObtenirModificateurDeClub(), gestionaireJoueurs.ObtenirModificateurDeJoueur()),
+                    (SynchroniserParCSV cmd) => cmd.Run((AccesseurPoonaParFichierCSV) accesseurPoona, gestionaireClubs, gestionaireJoueurs),
                     errs => 1);
         }
+
+        //public int ParseSynchroniser(string[] args)
+        //{
+        //    switch (accesseurPoona)
+        //    {
+        //        case AccesseurPoonaParFichierCSV accesseurCSV:
+        //            return Parser
+        //                    .Default
+        //                    .ParseArguments<SynchroniserParCSV>(args)
+        //                    .MapResult(
+        //                        (SynchroniserParCSV cmd) => cmd.Run(accesseurCSV, gestionaireClubs, gestionaireJoueurs),
+        //                        errs => 1
+        //                    );
+
+        //        default:
+        //            return 1;
+
+        //    }
+        //}
 
     }
 }

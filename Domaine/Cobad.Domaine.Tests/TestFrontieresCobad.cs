@@ -1,5 +1,6 @@
 using Cobad.Domaine.Metier;
 using Cobad.Domaine.Metier.Filtres;
+using Cobad.Domaine.PortsSecondaires.AccesPoona;
 using Cobad.Domaine.PortsSecondaires.Persistence;
 using Moq;
 using System;
@@ -10,7 +11,7 @@ namespace Cobad.Domaine.Tests
 {
     public class TestFrontieresCobad
     {
-        FrontiereCobad frontiereCobad = new FrontiereCobad(new Mock<IFrontierePersistance>().Object);
+        FrontiereCobad frontiereCobad = new FrontiereCobad(new Mock<IFrontierePersistance>().Object, new Mock<IAccesseurPoona>().Object);
 
 
         [Fact]

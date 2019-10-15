@@ -11,7 +11,8 @@ namespace Cobad.Domaine
         Jaune,
         Verte,
         Bleue,
-        Rouge
+        Rouge,
+        Aucune
     }
 
     //// ;'equivalent d'une enum mais avec des methodes 

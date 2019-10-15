@@ -9,17 +9,19 @@ namespace Cobad.StockageMySQL
     class DBConnection : LinqToDB.Data.DataConnection
     {
 
-        private static string ConnectionString = "";
-        public DBConnection() : base("MySql", ConnectionString) { }
+        private static string ConnectionStringSQL = "";
+        public DBConnection() : base("MySql", ConnectionStringSQL) { }
 
         public DBConnection(string connectionString) : base("MySql", connectionString) { }
 
         public static void SetConnectionString(string connectionString)
         {
-            ConnectionString = connectionString;
+            ConnectionStringSQL = connectionString;
         }
 
         public ITable<TableClub> Club => GetTable<TableClub>();
+
+        public ITable<TablePersonnel> Personnel => GetTable<TablePersonnel>();
 
         public ITable<TableJoueur> Joueur => GetTable<TableJoueur>();
 

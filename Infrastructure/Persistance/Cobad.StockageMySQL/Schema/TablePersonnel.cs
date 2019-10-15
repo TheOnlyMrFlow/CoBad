@@ -8,15 +8,15 @@ using System.Linq;
 namespace Cobad.StockageMySQL.DBSchema
 {
     [Table(Name = "club_personnel")]
-    class TablePersonnel
+    internal class TablePersonnel
     {
-        private static Dictionary<Personnel.Role, string> roleToString = new Dictionary<Personnel.Role, string>
+        public static readonly Dictionary<Personnel.Role, string> roleToString = new Dictionary<Personnel.Role, string>
         {
             {Personnel.Role.Encadrant, "Encadrant" },
             {Personnel.Role.Dirigeant, "Dirigeant" }
         };
 
-        private static Dictionary<string, Personnel.Role> stringToRole = roleToString.ToDictionary(i => i.Value, i => i.Key);
+        public static readonly Dictionary<string, Personnel.Role> stringToRole = roleToString.ToDictionary(i => i.Value, i => i.Key);
 
         public TablePersonnel() { }
 
@@ -29,7 +29,7 @@ namespace Cobad.StockageMySQL.DBSchema
             Mobile = personnel.Mobile;
             Mail = personnel.Mail;
         }
-        public Personnel ToPersonnel()
+        internal Personnel ToPersonnel()
         {
             return new Personnel(
                 stringToRole[Role],

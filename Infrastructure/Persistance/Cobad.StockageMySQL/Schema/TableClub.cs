@@ -15,8 +15,8 @@ namespace Cobad.StockageMySQL.DBSchema
         public TableClub() { }
         public TableClub(Club club)
         {
-            Club.ChampsPoona champsPoona = club.champsPropresAPoona;
-            Numero = champsPoona.Numero;
+            Numero = club.Numero;
+            var champsPoona = club.champsPropresAPoona;
             Nom = champsPoona.Nom;
             Sigle = champsPoona.Sigle;
             Ville = champsPoona.Ville;
@@ -37,45 +37,45 @@ namespace Cobad.StockageMySQL.DBSchema
             SiteWeb = champsPoona.SiteWeb;
         }
 
-        public Club ToClub()
-        {
-            Club.ChampsPoona champsPoona = new Club.ChampsPoona();
-            Club.ChampsCobad champsCobad = new Club.ChampsCobad();
+        //public Club ToClub()
+        //{
+        //    Club.ChampsPoona champsPoona = new Club.ChampsPoona();
+        //    Club.ChampsCobad champsCobad = new Club.ChampsCobad();
 
-            champsPoona.Numero = Numero;
-            champsPoona.Nom = Nom;
-            champsPoona.Sigle = Sigle;
-            champsPoona.Ville = Ville;
-            champsPoona.CodePostal = CodePostal;
-            Adresse adresse = new Adresse();
-            adresse.PointRemise = AdressePointRemise;
-            adresse.Localisation = AdresseLocalisation;
-            adresse.NumeroEtRue = AdresseAdresse;
-            adresse.Distribution = AdresseDistribution;
-            adresse.CodePostal = AdresseCodePostal;
-            adresse.Ville = AdresseVille;
-            adresse.Cedex = AdresseCedex;
-            adresse.Pays = AdressePays;           
-            champsPoona.Adresse = adresse;
-            champsPoona.NomPresident = NomPresident;
-            champsPoona.IsCorpo = IsCorpo;
-            champsPoona.Tel = Tel;
-            champsPoona.Mobile = Mobile;
-            champsPoona.Mail = Mail;
-            champsPoona.SiteWeb = SiteWeb;
-            champsCobad.Personnel = new List<Personnel>();
+        //    champsPoona.Numero = Numero;
+        //    champsPoona.Nom = Nom;
+        //    champsPoona.Sigle = Sigle;
+        //    champsPoona.Ville = Ville;
+        //    champsPoona.CodePostal = CodePostal;
+        //    Adresse adresse = new Adresse();
+        //    adresse.PointRemise = AdressePointRemise;
+        //    adresse.Localisation = AdresseLocalisation;
+        //    adresse.NumeroEtRue = AdresseAdresse;
+        //    adresse.Distribution = AdresseDistribution;
+        //    adresse.CodePostal = AdresseCodePostal;
+        //    adresse.Ville = AdresseVille;
+        //    adresse.Cedex = AdresseCedex;
+        //    adresse.Pays = AdressePays;           
+        //    champsPoona.Adresse = adresse;
+        //    champsPoona.NomPresident = NomPresident;
+        //    champsPoona.IsCorpo = IsCorpo;
+        //    champsPoona.Tel = Tel;
+        //    champsPoona.Mobile = Mobile;
+        //    champsPoona.Mail = Mail;
+        //    champsPoona.SiteWeb = SiteWeb;
+        //    champsCobad.Personnel = new List<Personnel>();
 
-            foreach (var p in this.Personnel)
-            {
-                champsCobad.Personnel.Add(p.ToPersonnel());
-            }
+        //    foreach (var p in this.Personnel)
+        //    {
+        //        champsCobad.Personnel.Add(p.ToPersonnel());
+        //    }
 
-            Club club = new Club();
-            club.champsPropresAPoona = champsPoona;
-            club.champsPropresACobad = champsCobad;
+        //    Club club = new Club();
+        //    club.champsPropresAPoona = champsPoona;
+        //    club.champsPropresACobad = champsCobad;
 
-            return club;
-        }
+        //    return club;
+        //}
 
         [Column(Name = "Numero"), PrimaryKey]
         public string Numero { get; set; }

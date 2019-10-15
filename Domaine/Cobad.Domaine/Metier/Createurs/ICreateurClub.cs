@@ -2,8 +2,8 @@
 {
     public interface ICreateurClub
     {
-        CreateurClub DontLeNumeroEst(string numero);
-        CreateurClub DontLesChampsPoonaSont(Club.ChampsPoona champsPoona);
+        ICreateurClub DontLeNumeroEst(string numero);
+        ICreateurClub DontLesChampsPoonaSont(Club.ChampsPoona champsPoona);
         Club Creer();
     }
 }

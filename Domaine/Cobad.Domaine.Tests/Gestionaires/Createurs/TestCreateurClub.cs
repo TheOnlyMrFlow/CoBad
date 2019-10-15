@@ -3,6 +3,7 @@ using Cobad.Domaine.Metier.Createurs;
 using Cobad.Domaine.Metier.Exceptions;
 using Cobad.Domaine.Metier.Filtres;
 using Cobad.Domaine.Metier.Modificateurs;
+using Cobad.Domaine.PortsSecondaires.AccesPoona;
 using Cobad.Domaine.PortsSecondaires.Persistence;
 using Moq;
 using System;
@@ -39,7 +40,7 @@ namespace Cobad.Domaine.Tests
                 .Setup(x => x.RepertoireClubs)
                 .Returns(mockRepertoireClub.Object);
 
-            this.createurClub = new FrontiereCobad(mockFrontierePersistence.Object).GestionaireClubs.ObtenirCreateurDeClub();
+            this.createurClub = new FrontiereCobad(mockFrontierePersistence.Object, new Mock<IAccesseurPoona>().Object).GestionaireClubs.ObtenirCreateurDeClub();
             
         }
 
