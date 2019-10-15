@@ -1,4 +1,5 @@
 ﻿using Cobad.Domaine.Metier.Createurs;
+using Cobad.Domaine.Metier.Exceptions;
 using Cobad.Domaine.Metier.Filtres;
 using Cobad.Domaine.Metier.Modificateurs;
 using Cobad.Domaine.PortsSecondaires.Persistence;
@@ -18,17 +19,20 @@ namespace Cobad.Domaine.Metier
 
         public ICreateurJoueur ObtenirCreateurDeJoueur()
         {
-            throw new NotImplementedException();
+            return new CreateurJoueur(repertoireJoueurs);
         }
 
         public IFiltreJoueur ObtenirFiltreDeJoueur()
         {
-            throw new NotImplementedException();
+            return new FiltreJoueur(repertoireJoueurs);
         }
 
-        public IModificateurJoueur ObtenirModificateurDeJoueur()
+        public IModificateurJoueur ObtenirModificateurDeJoueur(int licenseDuJoueurAModifier)
         {
-            throw new NotImplementedException();
+            if (!repertoireJoueurs.Existe(licenseDuJoueurAModifier))
+                throw new ElementNonExistantException();
+
+            return new ModificateurJoueur(this.repertoireJoueurs, licenseDuJoueurAModifier);
         }
     }
 }

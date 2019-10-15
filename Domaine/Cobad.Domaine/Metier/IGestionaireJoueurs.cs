@@ -8,6 +8,6 @@ namespace Cobad.Domaine.Metier
     {
         ICreateurJoueur ObtenirCreateurDeJoueur();
         IFiltreJoueur ObtenirFiltreDeJoueur();
-        IModificateurJoueur ObtenirModificateurDeJoueur();
+        IModificateurJoueur ObtenirModificateurDeJoueur(int license);
     }
 }

@@ -48,7 +48,7 @@ namespace Cobad.Domaine.Metier.Filtres
 
         public IEnumerable<Club> OrdonnerParNumero()
         {
-            return ObtenirClubsQuiCorrespondentAuxFiltres().OrderBy(club => club.champsPropresAPoona.Numero);
+            return ObtenirClubsQuiCorrespondentAuxFiltres().OrderBy(club => club.Numero);
         }
 
         public IEnumerable<Club> OrdonnerParSigle()

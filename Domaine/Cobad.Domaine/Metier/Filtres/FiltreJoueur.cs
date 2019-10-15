@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cobad.Domaine.PortsSecondaires.Persistence;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,7 +8,11 @@ namespace Cobad.Domaine.Metier.Filtres
     public class FiltreJoueur : IFiltreJoueur
     {
 
-        internal FiltreJoueur() { }
+        private IRepertoireJoueurs repertoireJoueurs;
+        internal FiltreJoueur(IRepertoireJoueurs repertoireJoueurs)
+        {
+            this.repertoireJoueurs = repertoireJoueurs;
+        }
 
         public FiltreClub FiltrerParNom(string nom)
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cobad.Domaine.PortsSecondaires.Persistence;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,7 +8,15 @@ namespace Cobad.Domaine.Metier.Modificateurs
     public class ModificateurJoueur : IModificateurJoueur
     {
 
-        internal ModificateurJoueur() { }
+        private IRepertoireJoueurs repertoireJoueurs;
+
+        private Joueur joueurAModifier;
+
+        internal ModificateurJoueur(IRepertoireJoueurs repertoireJoueurs, int licenseDuJoueurAModifier)
+        {
+            this.repertoireJoueurs = repertoireJoueurs;
+            this.joueurAModifier = repertoireJoueurs.ObtenirJoueurParLicense(licenseDuJoueurAModifier);
+        }
 
         private bool sauvegarderMail = false;
         private string mail;

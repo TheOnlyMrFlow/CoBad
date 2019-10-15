@@ -1,4 +1,5 @@
 ﻿using Cobad.Domaine.Metier.Createurs;
+using Cobad.Domaine.Metier.Exceptions;
 using Cobad.Domaine.Metier.Filtres;
 using Cobad.Domaine.Metier.Modificateurs;
 using Cobad.Domaine.PortsSecondaires.Persistence;
@@ -30,6 +31,9 @@ namespace Cobad.Domaine.Metier
 
         public IModificateurClub ObtenirModificateurDeClub(string numeroDuClubAModifier)
         {
+            if (!repertoireClubs.Existe(numeroDuClubAModifier))
+                throw new ElementNonExistantException();
+
             return new ModificateurClub(this.repertoireClubs, numeroDuClubAModifier);
         }
     }

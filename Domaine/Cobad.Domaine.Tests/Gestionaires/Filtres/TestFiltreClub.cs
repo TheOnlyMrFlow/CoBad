@@ -19,8 +19,8 @@ namespace Cobad.Domaine.Tests
         {
 
             this.club1 = new Club(
+                            "LIFB.93.05.025",
                             new Club.ChampsPoona(
-                                "LIFB.93.05.025",
                                 new Adresse(),
                                 "Association Badminton Seine St Denis",
                                 "APSAD93",
@@ -37,8 +37,8 @@ namespace Cobad.Domaine.Tests
 
 
             this.club2 = new Club(
+                            "LIFB.93.98.018",
                             new Club.ChampsPoona(
-                                "LIFB.93.98.018",
                                 new Adresse(),
                                 "Athletic Club De Bobigny",
                                 "ACB",
@@ -54,8 +54,8 @@ namespace Cobad.Domaine.Tests
                             );
 
             this.club3 = new Club(
+                            "LIFB.93.06.040",
                             new Club.ChampsPoona(
-                                "LIFB.93.06.040",
                                 new Adresse(),
                                 "Association Badminton Romainvillois",
                                 "ABR",

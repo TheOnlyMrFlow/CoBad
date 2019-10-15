@@ -44,19 +44,36 @@ namespace Cobad.Domaine.Tests
         }
 
         [Fact]
-        public void leve_une_exception_si_club_existe_deja()
+        public void leve_une_exception_si_numero_pas_specifie()
         {
-            var champs = new Club.ChampsPoona(numeroClubQuiExisteDeja);
-            Assert.Throws<DuplicationException>(() => createurClub.DontLesChampsPoonaSont(champs).Creer());
+            //todo
+            Assert.Throws<ArgumentNullException>(() => createurClub.Creer());
         }
 
         [Fact]
-        public void retourne_le_bon_club()
+        public void leve_une_exception_si_club_existe_deja()
         {
-            var champs = new Club.ChampsPoona(numeroClubQuiExistePas);
-            var clubRenvoye = createurClub.DontLesChampsPoonaSont(champs).Creer();
-            Assert.Equal(champs, clubRenvoye.champsPropresAPoona);
+            Assert.Throws<DuplicationException>(() => createurClub.DontLeNumeroEst(numeroClubQuiExisteDeja).Creer());
+        }
 
+        [Fact]
+        public void fixer_le_numero_de_club_fonctionne()
+        {
+            var clubRenvoye = createurClub.DontLeNumeroEst(numeroClubQuiExistePas).Creer();
+            Assert.Equal(numeroClubQuiExistePas, clubRenvoye.Numero);
+        }
+
+        [Fact]
+        public void fixer_les_champs_poona_fonctionne()
+        {
+            var champs = new Club.ChampsPoona();
+            champs.Nom = "Foo Bar";
+            var clubRenvoye = createurClub
+                .DontLeNumeroEst(numeroClubQuiExistePas)
+                .DontLesChampsPoonaSont(champs)
+                .Creer();
+            Assert.Equal(champs, clubRenvoye.champsPropresAPoona);
+            Assert.Equal("Foo Bar", clubRenvoye.champsPropresAPoona.Nom);
         }
 
     }

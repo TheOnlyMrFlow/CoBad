@@ -5,27 +5,26 @@ namespace Cobad.Domaine
 {
     public class Club
     {
-
-        public Club(ChampsPoona champsPoona)
+        public Club(string numero)
         {
+            this.Numero = numero;
+            this.champsPropresAPoona = new ChampsPoona();
+        }
+        public Club(string numero, ChampsPoona champsPoona)
+        {
+            this.Numero = numero;
             this.champsPropresAPoona = champsPoona;
-            this.champsPropresACobad = new ChampsCobad();
         }
 
-        public Club(ChampsPoona champsPoona, ChampsCobad champsCobad)
+        public Club(string numero, ChampsPoona champsPoona, List<Personnel> personnel) : this(numero, champsPoona)
         {
-            this.champsPropresAPoona = champsPoona;
-            this.champsPropresACobad = champsCobad;
+            this.Personnel = personnel;
         }
 
         public class ChampsPoona
         {
-            public ChampsPoona(string numero)
-            {
-                this.Numero = numero;
-            }
-
-            public ChampsPoona(string numero, Adresse adresse, string nom, string sigle, string ville, string codePostal, string nomPresident, bool isCorpo, string tel, string mobile, string mail, string siteWeb)
+            public ChampsPoona() { }
+            public ChampsPoona(Adresse adresse, string nom, string sigle, string ville, string codePostal, string nomPresident, bool isCorpo, string tel, string mobile, string mail, string siteWeb)
             {
                 Adresse = adresse;
                 Nom = nom;
@@ -33,7 +32,6 @@ namespace Cobad.Domaine
                 Ville = ville;
                 CodePostal = codePostal;
                 NomPresident = nomPresident;
-                Numero = numero;
                 IsCorpo = isCorpo;
                 Tel = tel;
                 Mobile = mobile;
@@ -47,7 +45,6 @@ namespace Cobad.Domaine
             public string Ville { get; set; } = "";
             public string CodePostal { get; set; } = "";
             public string NomPresident { get; set; } = "";
-            public string Numero { get; set; } = "";
             public bool IsCorpo { get; set; } = false;
             public string Tel { get; set; } = "";
             public string Mobile { get; set; } = "";
@@ -55,24 +52,11 @@ namespace Cobad.Domaine
             public string SiteWeb { get; set; } = "";
         }
 
-        public class ChampsCobad
-        {
 
-            public ChampsCobad() { }
-
-            public ChampsCobad(List<Personnel> personnel)
-            {
-                Personnel = personnel;
-            }
-
-            public List<Personnel> Personnel { get; set; } = new List<Personnel>();
-
-        }
-
-
+        public string Numero;
 
         public ChampsPoona champsPropresAPoona;
-        public ChampsCobad champsPropresACobad;
+        public List<Personnel> Personnel { get; set; } = new List<Personnel>();
 
     }
 }

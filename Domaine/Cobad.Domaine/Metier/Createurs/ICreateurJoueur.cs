@@ -2,7 +2,8 @@
 {
     public interface ICreateurJoueur
     {
-        Joueur Creer();
+        CreateurJoueur DontLaLicenceEst(int license);
         CreateurJoueur DontLesChampsPoonaSont(Joueur.ChampsPoona champsPoona);
+        Joueur Creer();
     }
 }

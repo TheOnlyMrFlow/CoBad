@@ -1,5 +1,6 @@
 using Cobad.Domaine.Metier;
 using Cobad.Domaine.Metier.Createurs;
+using Cobad.Domaine.Metier.Exceptions;
 using Cobad.Domaine.Metier.Filtres;
 using Cobad.Domaine.Metier.Modificateurs;
 using Cobad.Domaine.PortsSecondaires.Persistence;
@@ -12,8 +13,30 @@ namespace Cobad.Domaine.Tests
 {
     public class TestGestionaireClubs
     {
-        IGestionaireClubs gestionaireClubs = new FrontiereCobad(new Mock<IFrontierePersistance>().Object).GestionaireClubs;
+        IGestionaireClubs gestionaireClubs;
+        private string numeroClubQuiExisteDeja = "LIFB.93.05.025";
+        private string numeroClubQuiExistePas = "LIFB.93.05.026";
 
+        public TestGestionaireClubs()
+        {
+            var mockRepertoireClubs = new Mock<IRepertoireClubs>();
+
+            mockRepertoireClubs
+                .Setup(x => x.Existe(It.IsAny<string>()))
+                .Returns(false);
+
+            mockRepertoireClubs
+                .Setup(x => x.Existe(numeroClubQuiExisteDeja))
+                .Returns(true);
+
+            var mockFrontierePersistance = new Mock<IFrontierePersistance>();
+
+            mockFrontierePersistance
+                .Setup(x => x.RepertoireClubs)
+                .Returns(mockRepertoireClubs.Object);
+
+            gestionaireClubs = new FrontiereCobad(mockFrontierePersistance.Object).GestionaireClubs;
+        }
 
         [Fact]
         public void obtenir_filtre_de_club_renvoie_un_filtre_de_club()
@@ -28,9 +51,15 @@ namespace Cobad.Domaine.Tests
         }
 
         [Fact]
+        public void obtenir_modificateur_de_club_avec_numero_club_non_existant_leve_une_exception()
+        {
+            Assert.Throws<ElementNonExistantException>(() => gestionaireClubs.ObtenirModificateurDeClub(numeroClubQuiExistePas));
+        }
+
+        [Fact]
         public void obtenir_modificateur_de_club_renvoie_un_modificateur_de_club()
         {
-            Assert.IsType<ModificateurClub>(gestionaireClubs.ObtenirModificateurDeClub(It.IsAny<string>()));
+            Assert.IsType<ModificateurClub>(gestionaireClubs.ObtenirModificateurDeClub(numeroClubQuiExisteDeja));
         }
     }
 }

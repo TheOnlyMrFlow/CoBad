@@ -8,8 +8,8 @@ namespace Cobad.Domaine.Metier.Createurs
 {
     public class CreateurClub : ICreateurClub
     {
-        private Club.ChampsPoona champsPoona;
-        private Club.ChampsCobad champsCobad = new Club.ChampsCobad();
+        private string numero;
+        private Club.ChampsPoona champsPoona = new Club.ChampsPoona();
 
         private IRepertoireClubs repertoireClubs;
         internal CreateurClub(IRepertoireClubs repertoireClubs)
@@ -19,10 +19,7 @@ namespace Cobad.Domaine.Metier.Createurs
 
         public CreateurClub DontLeNumeroEst(string numero)
         {
-            if (this.champsPoona == null)
-                this.champsPoona = new Club.ChampsPoona(numero);
-            else
-                this.champsPoona.Numero = numero;
+            this.numero = numero;
             return this;
         }
 
@@ -34,12 +31,12 @@ namespace Cobad.Domaine.Metier.Createurs
 
         public Club Creer()
         {
-            if (champsPoona == null)
-                throw new ArgumentNullException("Il faut specifier les champs poona ou au moins le numero du club");
-            else if (repertoireClubs.Existe(champsPoona.Numero))
+            if (numero == null)
+                throw new ArgumentNullException("Il faut specifier au moins le numero du club");
+            else if (repertoireClubs.Existe(numero))
                 throw new DuplicationException();
 
-            var club = new Club(champsPoona, champsCobad);
+            var club = new Club(numero, champsPoona);
             repertoireClubs.MettreAJour(club);
             return club;
         }
