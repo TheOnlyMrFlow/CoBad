@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Cobad.Domaine.Metier
 {
-    public class GestionaireClubs : IGestionaireClubs
+    internal class GestionaireClubs : IGestionaireClubs
     {
 
         private IRepertoireClubs repertoireClubs;

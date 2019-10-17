@@ -112,9 +112,9 @@ namespace Cobad.Domaine
         public string NumeroClub { get; set; }
         public ChampsPoona ChampsPropresAPoona { get; set; }
 
-        public string Tel { get; set; }
+        public string Tel { get; set; } = "";
 
-        public string Mail { get; set; }
+        public string Mail { get; set; } = "";
 
     }
 }

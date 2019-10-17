@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Cobad.Domaine.Metier.Filtres
 {
-    public class FiltreClub : IFiltreClub
+    internal class FiltreClub : IFiltreClub
     {
 
         private IRepertoireClubs repertoireClubs;
@@ -22,14 +22,14 @@ namespace Cobad.Domaine.Metier.Filtres
             this.repertoireClubs = repertoireClubs;
         }
 
-        public FiltreClub FiltrerParNom(string nom)
+        public IFiltreClub FiltrerParNom(string nom)
         {
             filtrerNom = true;
             this.nom = nom;
             return this;
         }
 
-        public FiltreClub FiltrerParSigle(string sigle)
+        public IFiltreClub FiltrerParSigle(string sigle)
         {
             filtrerSigle = true;
             this.sigle = sigle;

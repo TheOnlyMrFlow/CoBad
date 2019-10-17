@@ -41,16 +41,17 @@ namespace Cobad.StockageMySQL.Adapters
         {
             using (var db = new DBConnection())
             {
+
                 db.Update<TableClub>(new TableClub(club));
                 foreach (var personnel in club.Personnel)
                 {
                     db.InsertOrReplace<TablePersonnel>(new TablePersonnel(club.Numero, personnel));
                 }
-                var nomsPersonnelsAjoutes = club.Personnel.Select(p => p.Nom);
+                var nomsPersonnels = club.Personnel.Select(p => p.Nom);
                 var personnelsASupprimer =
                     (
                     from p in db.Personnel
-                    where !nomsPersonnelsAjoutes.Contains(p.Nom)
+                    where !nomsPersonnels.Contains(p.Nom)
                     select p
                     );
 

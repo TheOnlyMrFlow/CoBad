@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Cobad.Domaine.Metier
 {
-    public class GestionaireCollectifs : IGestionaireCollectifs
+    internal class GestionaireCollectifs : IGestionaireCollectifs
     {
         IRepertoireCollectifs repertoireCollectifs;
         internal GestionaireCollectifs(IRepertoireCollectifs repertoireCollectifs)
@@ -18,7 +18,7 @@ namespace Cobad.Domaine.Metier
 
         public ICreateurCollectif ObtenirCreateurDeCollectif()
         {
-            throw new NotImplementedException();
+            return new CreateurCollectif(repertoireCollectifs);
         }
 
         public IFiltreCollectif ObtenirFiltreDeCollectif()

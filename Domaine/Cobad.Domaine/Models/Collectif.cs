@@ -25,8 +25,8 @@ namespace Cobad.Domaine
             }
         }
 
-        public ISet<Categorie> Categories { get; private set; }
+        public ISet<Categorie> Categories { get; internal set; }
 
-        public List<Joueur> Membres { get; private set; }
+        public List<Joueur> Membres { get; internal set; }
     }
 }

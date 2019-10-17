@@ -1,8 +1,14 @@
-﻿namespace Cobad.Domaine.Metier.Createurs
+﻿using System.Collections.Generic;
+
+namespace Cobad.Domaine.Metier.Createurs
 {
     public interface ICreateurCollectif
     {
         Collectif Creer();
-        CreateurCollectif DontLeNomEst(string nom);
+        ICreateurCollectif DontLeNomEst(string nom);
+
+        ICreateurCollectif DontLesCategoriesSont(IEnumerable<Categorie> categories);
+
+        ICreateurCollectif DontLesMembresSont(IEnumerable<Joueur> membres);
     }
 }

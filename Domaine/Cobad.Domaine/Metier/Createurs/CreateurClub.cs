@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Cobad.Domaine.Metier.Createurs
 {
-    public class CreateurClub : ICreateurClub
+    internal class CreateurClub : ICreateurClub
     {
         private string numero;
         private Club.ChampsPoona champsPoona = new Club.ChampsPoona();

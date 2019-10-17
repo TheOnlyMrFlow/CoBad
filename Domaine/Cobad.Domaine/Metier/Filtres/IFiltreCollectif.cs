@@ -4,10 +4,10 @@ namespace Cobad.Domaine.Metier.Filtres
 {
     public interface IFiltreCollectif
     {
-        FiltreCollectif FiltrerParCategorie(Categorie categorie);
-        FiltreCollectif FiltrerParCategories(ICollection<Categorie> categories);
-        FiltreCollectif FiltrerParMembre(int license);
-        FiltreCollectif FiltrerParNom(string nom);
+        IFiltreCollectif FiltrerParCategorie(Categorie categorie);
+        IFiltreCollectif FiltrerParCategories(ICollection<Categorie> categories);
+        IFiltreCollectif FiltrerParMembre(int license);
+        IFiltreCollectif FiltrerParNom(string nom);
         IEnumerable<Club> OrdonnerParNom();
     }
 }

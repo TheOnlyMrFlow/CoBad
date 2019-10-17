@@ -4,27 +4,27 @@ using System.Text;
 
 namespace Cobad.Domaine.Metier.Filtres
 {
-    public class FiltreCollectif : IFiltreCollectif
+    internal class FiltreCollectif : IFiltreCollectif
     {
 
         internal FiltreCollectif() { }
 
-        public FiltreCollectif FiltrerParNom(string nom)
+        public IFiltreCollectif FiltrerParNom(string nom)
         {
             throw new NotImplementedException();
         }
 
-        public FiltreCollectif FiltrerParCategorie(Categorie categorie)
+        public IFiltreCollectif FiltrerParCategorie(Categorie categorie)
         {
             throw new NotImplementedException();
         }
 
-        public FiltreCollectif FiltrerParCategories(ICollection<Categorie> categories)
+        public IFiltreCollectif FiltrerParCategories(ICollection<Categorie> categories)
         {
             throw new NotImplementedException();
         }
 
-        public FiltreCollectif FiltrerParMembre(int license)
+        public IFiltreCollectif FiltrerParMembre(int license)
         {
             throw new NotImplementedException();
         }

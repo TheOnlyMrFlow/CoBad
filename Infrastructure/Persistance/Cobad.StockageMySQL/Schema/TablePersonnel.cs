@@ -45,7 +45,7 @@ namespace Cobad.StockageMySQL.DBSchema
         [Column(Name = "Numero-Club")]
         public string NumeroClub { get; set; }
 
-        [Column(Name = "Nom")]
+        [Column(Name = "Nom"), PrimaryKey]
         public string Nom { get; set; }
 
         [Column(Name = "Tel")]

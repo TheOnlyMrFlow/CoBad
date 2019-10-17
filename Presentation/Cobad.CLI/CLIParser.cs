@@ -31,15 +31,15 @@ namespace Cobad.CLI
                 Parser
                 .Default
                 .ParseArguments<
-                    AjouterCollectif,
-                    AjouterContactJoueur,
+                    CreerCollectif,
+                    ModifierContactJoueur,
                     AjouterPersonnel,
                     ListerClubs,
                     ListerJoueurs,
                     SynchroniserParCSV>(args)
                 .MapResult(
-                    (AjouterCollectif cmd) => cmd.Run(gestionaireCollectifs),
-                    (AjouterContactJoueur cmd) => cmd.Run(gestionaireJoueurs),
+                    (CreerCollectif cmd) => cmd.Run(gestionaireCollectifs, gestionaireJoueurs),
+                    (ModifierContactJoueur cmd) => cmd.Run(gestionaireJoueurs),
                     (AjouterPersonnel cmd) => cmd.Run(gestionaireClubs),
                     (ListerClubs cmd) => cmd.Run(gestionaireClubs.ObtenirFiltreDeClub()),
                     (ListerJoueurs cmd) => cmd.Run(gestionaireJoueurs.ObtenirFiltreDeJoueur()),

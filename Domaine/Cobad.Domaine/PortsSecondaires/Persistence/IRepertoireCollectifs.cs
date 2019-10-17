@@ -6,6 +6,7 @@ namespace Cobad.Domaine.PortsSecondaires.Persistence
 {
     public interface IRepertoireCollectifs
     {
+        bool Existe(string nomCollectif);
         Collectif ObtenirCollectifParNom(string nom);
         IEnumerable<Collectif> ObtenirTousLesCollectifs();
         void Ajouter(Collectif collectif);

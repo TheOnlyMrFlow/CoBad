@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Cobad.Domaine.Metier.Createurs
 {
-    public class CreateurJoueur : ICreateurJoueur
+    internal class CreateurJoueur : ICreateurJoueur
     {
         private int license = -1;
         private string numeroClub;

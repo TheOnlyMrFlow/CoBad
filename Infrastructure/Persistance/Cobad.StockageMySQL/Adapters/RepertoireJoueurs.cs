@@ -62,7 +62,15 @@ namespace Cobad.StockageMySQL.Adapters
 
         public IEnumerable<Joueur> ObtenirTousLesJoueurs()
         {
-            throw new NotImplementedException();
+            using (var db = new DBConnection())
+            {
+                var query =
+                    from joueur in db.Joueur
+                    select SchemaJoueurVersJoueur(joueur);
+
+                return query.ToList();
+
+            }
         }
 
         private Joueur SchemaJoueurVersJoueur(TableJoueur schemaJoueur)

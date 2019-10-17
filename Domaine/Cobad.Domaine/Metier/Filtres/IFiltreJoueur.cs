@@ -4,8 +4,18 @@ namespace Cobad.Domaine.Metier.Filtres
 {
     public interface IFiltreJoueur
     {
-        FiltreClub FiltrerParLicense(string sigle);
-        FiltreClub FiltrerParNom(string nom);
-        IEnumerable<Club> OrdonnerParNom();
+        IFiltreJoueur FiltrerParLicense(int license);
+        IFiltreJoueur FiltrerParNom(string nom);
+
+        IFiltreJoueur FiltrerParClub(string numeroClub);
+
+        IFiltreJoueur FiltrerparSexe(char sexe);
+
+        IFiltreJoueur FiltrerParCategorie(Categorie categorie);
+        IEnumerable<Joueur> OrdonnerParNom();
+
+        IEnumerable<Joueur> OrdonnerParDefaut();
+
+        string GenererMailingList(string sperateur);
     }
 }
