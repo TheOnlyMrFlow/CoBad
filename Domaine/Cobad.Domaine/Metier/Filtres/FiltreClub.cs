@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Cobad.Domaine.Metier.Filtres
 {
-    internal class FiltreClub : IFiltreClub
+    class FiltreClub : IFiltreClub
     {
 
         private IRepertoireClubs repertoireClubs;

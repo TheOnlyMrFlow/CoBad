@@ -1,7 +1,6 @@
 ﻿using Cobad.CLI.Exceptions;
 using Cobad.Domaine;
 using Cobad.Domaine.Metier;
-using Cobad.Domaine.Metier.Exceptions;
 using Cobad.Domaine.Metier.Modificateurs;
 using CommandLine;
 using System;

@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Cobad.Domaine.Metier
 {
-    internal class GestionaireCollectifs : IGestionaireCollectifs
+    class GestionaireCollectifs : IGestionaireCollectifs
     {
         IRepertoireCollectifs repertoireCollectifs;
         internal GestionaireCollectifs(IRepertoireCollectifs repertoireCollectifs)

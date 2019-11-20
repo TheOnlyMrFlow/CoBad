@@ -4,7 +4,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Cobad.Domaine
+namespace Cobad.Domaine.Metier
 {
     class ValidateurChamps
     {

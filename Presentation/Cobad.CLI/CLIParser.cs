@@ -47,24 +47,5 @@ namespace Cobad.CLI
                     errs => 1);
         }
 
-        //public int ParseSynchroniser(string[] args)
-        //{
-        //    switch (accesseurPoona)
-        //    {
-        //        case AccesseurPoonaParFichierCSV accesseurCSV:
-        //            return Parser
-        //                    .Default
-        //                    .ParseArguments<SynchroniserParCSV>(args)
-        //                    .MapResult(
-        //                        (SynchroniserParCSV cmd) => cmd.Run(accesseurCSV, gestionaireClubs, gestionaireJoueurs),
-        //                        errs => 1
-        //                    );
-
-        //        default:
-        //            return 1;
-
-        //    }
-        //}
-
     }
 }

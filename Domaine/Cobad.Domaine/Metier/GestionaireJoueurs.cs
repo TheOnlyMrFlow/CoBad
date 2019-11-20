@@ -1,5 +1,5 @@
 ﻿using Cobad.Domaine.Metier.Createurs;
-using Cobad.Domaine.Metier.Exceptions;
+using Cobad.Domaine.Metier;
 using Cobad.Domaine.Metier.Filtres;
 using Cobad.Domaine.Metier.Modificateurs;
 using Cobad.Domaine.PortsSecondaires.Persistence;
@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Cobad.Domaine.Metier
 {
-    internal class GestionaireJoueurs : IGestionaireJoueurs
+    class GestionaireJoueurs : IGestionaireJoueurs
     {
         IRepertoireJoueurs repertoireJoueurs;
         IRepertoireClubs repertoireClubs;

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Cobad.Domaine.Metier.Modificateurs
 {
-    internal class ModificateurCollectif : IModificateurCollectif
+    class ModificateurCollectif : IModificateurCollectif
     {
         internal ModificateurCollectif() { }
 

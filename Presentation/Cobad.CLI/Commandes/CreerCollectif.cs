@@ -2,13 +2,10 @@
 using Cobad.CLI.Helpers;
 using Cobad.Domaine;
 using Cobad.Domaine.Metier;
-using Cobad.Domaine.Metier.Createurs;
-using Cobad.Domaine.Metier.Exceptions;
 using CommandLine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Cobad.CLI.Commandes
 {

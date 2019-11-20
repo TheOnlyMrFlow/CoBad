@@ -1,4 +1,4 @@
-﻿using Cobad.Domaine.Metier.Exceptions;
+﻿using Cobad.Domaine.Metier;
 using Cobad.Domaine.PortsSecondaires.Persistence;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Cobad.Domaine.Metier.Createurs
 {
-    internal class CreateurCollectif : ICreateurCollectif
+    class CreateurCollectif : ICreateurCollectif
     {
 
         private IRepertoireCollectifs repertoireCollectifs;

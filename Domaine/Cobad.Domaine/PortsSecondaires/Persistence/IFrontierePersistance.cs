@@ -11,5 +11,7 @@ namespace Cobad.Domaine.PortsSecondaires.Persistence
         IRepertoireCollectifs RepertoireCollectifs { get; }
 
         IRepertoireJoueurs RepertoireJoueurs { get; }
+
+        IRepertoireCompetitions RepertoireCompetitions { get; }
     }
 }

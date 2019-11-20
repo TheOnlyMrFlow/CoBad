@@ -47,8 +47,6 @@ namespace Cobad.CLI.Commandes
 
         private IFiltreJoueur filtreJoueur;
 
-
-
         public int Run(IFiltreJoueur filtreDeJoueur)
         {
             this.filtreJoueur = filtreDeJoueur;

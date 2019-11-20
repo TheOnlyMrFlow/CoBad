@@ -19,8 +19,8 @@ namespace Cobad.Domaine
             get => _nom;
             set
             {
-                ValidateurChamps.ImposerChampsNonNull(value);
-                ValidateurChamps.ImposerLongueurMaximal(value, 50);
+                //ValidateurChamps.ImposerChampsNonNull(value);
+                //ValidateurChamps.ImposerLongueurMaximal(value, 50);
                 _nom = value;
             }
         }

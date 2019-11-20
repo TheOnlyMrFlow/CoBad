@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Cobad.Domaine.Metier.Filtres
 {
-    internal class FiltreJoueur : IFiltreJoueur
+    class FiltreJoueur : IFiltreJoueur
     {
 
         private IRepertoireJoueurs repertoireJoueurs;

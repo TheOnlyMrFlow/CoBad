@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Cobad.Domaine.Metier.Modificateurs
 {
-    internal class ModificateurClub : IModificateurClub
+    class ModificateurClub : IModificateurClub
     {
 
         private IRepertoireClubs repertoireClubs;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Cobad.Domaine.Metier.Exceptions
+namespace Cobad.Domaine.Metier
 {
     public class DuplicationException : Exception
     {

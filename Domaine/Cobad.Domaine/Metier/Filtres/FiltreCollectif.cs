@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Cobad.Domaine.Metier.Filtres
 {
-    internal class FiltreCollectif : IFiltreCollectif
+    class FiltreCollectif : IFiltreCollectif
     {
 
         internal FiltreCollectif() { }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Cobad.Domaine
+namespace Cobad.Domaine.Metier
 {
     class CategorieInconnueException : Exception
     {
