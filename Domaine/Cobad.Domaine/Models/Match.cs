@@ -9,12 +9,15 @@ namespace Cobad.Domaine
         public Joueur[] EquipeA;
         public Joueur[] EquipeB;
 
-        public int[] ScoresA;
-        public int[] ScoresB;
+        public Set[] Sets;
 
         public bool Abandon;
 
         public bool Forfait;
+
+        public bool EstUnMatchSimple { get => EquipeA.Length == 1;  }
+
+        public bool EstUnMatchDouble { get => EquipeA.Length == 2; }
 
     }
 

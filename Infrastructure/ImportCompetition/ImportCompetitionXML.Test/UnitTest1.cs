@@ -22,16 +22,16 @@ namespace ImportCompetitionXML.Tests
 
 
             var moyenDePersistance = new Mock<IFrontierePersistance>();
-                moyenDePersistance
-                .Setup(x => x.RepertoireJoueurs.ObtenirJoueurParLicense(It.IsAny<int>()))
-                .Returns(new Joueur(1, "1"));
+            moyenDePersistance
+            .Setup(x => x.RepertoireJoueurs.ObtenirJoueurParLicense(It.IsAny<int>()))
+            .Returns(new Joueur(1, "1"));
 
             importeurDeCompetition = new ImporteurDeCompetitionParFichierXML(moyenDePersistance.Object);
         }
 
         [Fact]
         public void le_nom_de_la_competition_est_bon()
-        {   
+        {
 
             var competition = importeurDeCompetition.ExtraireCompetitionDe(XDocument.Load(cheminFichierExemple));
             competition.Nom.Should().Be("TNT4");
@@ -110,7 +110,7 @@ namespace ImportCompetitionXML.Tests
         {
             var competition = importeurDeCompetition.ExtraireCompetitionDe(XDocument.Load(cheminFichierExemple));
             competition.Tableaux.First().Rounds.First().Id.Should().Be(4421650);
-            competition.Tableaux.First().Rounds.Last().Id.Should().Be(442164); 
+            competition.Tableaux.First().Rounds.Last().Id.Should().Be(442164);
         }
 
         [Fact]
@@ -140,14 +140,14 @@ namespace ImportCompetitionXML.Tests
         {
             var competition = importeurDeCompetition.ExtraireCompetitionDe(XDocument.Load(cheminFichierExemple));
             var match = competition.Tableaux.ElementAt(12).Rounds.First().Matchs.ElementAt(1);
-            var scoresA = match.ScoresA;
-            var scoresB = match.ScoresB;
-            scoresA.Should().HaveCount(2);
-            scoresB.Should().HaveCount(2);
-            scoresA[0].Should().Be(21);
-            scoresA[1].Should().Be(21);
-            scoresB[0].Should().Be(13);
-            scoresB[1].Should().Be(6);
+
+            var sets = match.Sets;
+
+            sets[0].ScoreA.Should().Be(21);
+            sets[0].ScoreB.Should().Be(13);
+            sets[1].ScoreA.Should().Be(21);
+            sets[1].ScoreB.Should().Be(6);
+
 
         }
 

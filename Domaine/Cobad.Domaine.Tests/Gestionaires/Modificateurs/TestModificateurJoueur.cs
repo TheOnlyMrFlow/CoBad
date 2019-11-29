@@ -1,7 +1,8 @@
 using Cobad.Domaine.Metier;
-using Cobad.Domaine.Metier.Exceptions;
+using Cobad.Domaine.Metier;
 using Cobad.Domaine.Metier.Filtres;
 using Cobad.Domaine.Metier.Modificateurs;
+using Cobad.Domaine.PortsSecondaires;
 using Cobad.Domaine.PortsSecondaires.AccesPoona;
 using Cobad.Domaine.PortsSecondaires.Persistence;
 using Moq;
@@ -76,7 +77,7 @@ namespace Cobad.Domaine.Tests
                 .Setup(x => x.RepertoireJoueurs)
                 .Returns(mockRepertoireJoueurs.Object);
 
-            this.gestionaireJoueurs = new FrontiereCobad(mockFrontierePersistence.Object, new Mock<IAccesseurPoona>().Object).GestionaireJoueurs;
+            this.gestionaireJoueurs = new FrontiereCobad(mockFrontierePersistence.Object, new Mock<IAccesseurPoona>().Object, new Mock<IImporteurDeCompetition>().Object).GestionaireJoueurs;
 
             
         }

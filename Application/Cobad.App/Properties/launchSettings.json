@@ -3,10 +3,11 @@
     "Cobad.App": {
       "commandName": "Project",
       //"commandLineArgs": "sync -c \"C:\\Users\\comte\\Documents\\Kata Atelier\\25092019_clubs.csv\" -j \"C:\\Users\\comte\\Documents\\Kata Atelier\\25092019_jeunes.csv\" "
-      //"commandLineArgs": "ajpersonnel -c LIFB.93.04.023 -r d -p 0644234341 -m john@doe.fr -n \"John Doe\""
+      //"commandLineArgs": "ajpersonnel -c LIFB.93.04.023 -r d -p 0644234341 -m john@doe.fr -n \"Rocky Balboa\""
       //"commandLineArgs": "modifcoordjoueur -j 6659460 -t 0644234341 -m john@wick.com",
-      "commandLineArgs": "listerjoueurs -C LIFB.93.95.003 -c -t -m --mailing"
-      //"commandLineArgs": "creercollectif -n croustillants4 -c minibad poussin1 -j 6659460 6788192 34"
+      //"commandLineArgs": "listerjoueurs -C LIFB.93.95.003 -c -t -m --mailing"
+      //"commandLineArgs": "creercollectif -n croustillants4 -c minibad poussin1 -j 6659460 6788192"
+      "commandLineArgs": "impcomp -f \"C:\\Users\\comte\\Documents\\Kata Atelier\\18.LIFB.93_TI.D._006.xml\""
     }
   }
 }

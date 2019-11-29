@@ -22,6 +22,7 @@
     <ProjectReference Include="..\..\Domaine\Cobad.Domaine\Cobad.Domaine.csproj" />
     <ProjectReference Include="..\..\Infrastructure\AccesBDDPoona\AccesseurPoonaCSV\AccesseurPoonaCSV.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Persistance\Cobad.StockageMySQL\Cobad.StockageMySQL.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Persistance\Cobad.StockageSQLite\Cobad.StockageSQLite.csproj" />
     <ProjectReference Include="..\..\Presentation\Cobad.CLI\Cobad.CLI.csproj" />
   </ItemGroup>
 

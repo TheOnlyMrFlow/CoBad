@@ -1,7 +1,7 @@
 ﻿using AccesseurPoonaCSV;
 using Cobad.Domaine;
 using Cobad.Domaine.Metier;
-using Cobad.Domaine.Metier.Exceptions;
+
 using Cobad.Domaine.Metier.Modificateurs;
 using Cobad.Domaine.PortsSecondaires.AccesPoona;
 using CommandLine;

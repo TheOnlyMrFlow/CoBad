@@ -22,6 +22,8 @@ namespace Cobad.StockageMySQL.Adapters
         public IRepertoireCollectifs RepertoireCollectifs { get; private set; }
 
         public IRepertoireJoueurs RepertoireJoueurs { get; private set; }
+
+        public IRepertoireCompetitions RepertoireCompetitions => throw new NotImplementedException();
     }
 
 

@@ -5,7 +5,9 @@ using Cobad.CLI;
 using Cobad.Domaine;
 using Cobad.Domaine.PortsSecondaires.Persistence;
 using Cobad.StockageMySQL.Adapters;
+using Cobad.StockageSQLite.Adapters;
 using Microsoft.Extensions.Configuration;
+using ImportCompetitionXML;
 
 
 namespace Cobad.App
@@ -21,12 +23,15 @@ namespace Cobad.App
 
             var configuration = builder.Build();
 
-            var connectionString = configuration.GetSection("Secrets")["MySQLConnectionString"];
-            var frontierePersistance = new FrontiereStockageMySQL(connectionString);
+            //var connectionString = configuration.GetSection("Secrets")["MySQLConnectionString"];
+
+            var frontierePersistance = new FrontiereStockageSQLite();
 
             var accesseurPoona = new AccesseurPoonaParFichierCSV();
 
-            var frontiereCobad = new FrontiereCobad(frontierePersistance, accesseurPoona);
+            var importeurCompetition = new ImporteurDeCompetitionParFichierXML(frontierePersistance); ;
+
+            var frontiereCobad = new FrontiereCobad(frontierePersistance, accesseurPoona, importeurCompetition);
 
             var parser = new CLIParser(frontiereCobad);
 

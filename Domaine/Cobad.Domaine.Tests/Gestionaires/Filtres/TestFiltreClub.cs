@@ -1,4 +1,5 @@
 using Cobad.Domaine.Metier.Filtres;
+using Cobad.Domaine.PortsSecondaires;
 using Cobad.Domaine.PortsSecondaires.AccesPoona;
 using Cobad.Domaine.PortsSecondaires.Persistence;
 using Moq;
@@ -81,7 +82,7 @@ namespace Cobad.Domaine.Tests
                 .Setup(x => x.RepertoireClubs)
                 .Returns(mockRepertoireClub.Object);
 
-            this.filtreClub = new FrontiereCobad(mockFrontierePersistence.Object, new Mock<IAccesseurPoona>().Object).GestionaireClubs.ObtenirFiltreDeClub();
+            this.filtreClub = new FrontiereCobad(mockFrontierePersistence.Object, new Mock<IAccesseurPoona>().Object, new Mock<IImporteurDeCompetition>().Object).GestionaireClubs.ObtenirFiltreDeClub();
         }
 
 

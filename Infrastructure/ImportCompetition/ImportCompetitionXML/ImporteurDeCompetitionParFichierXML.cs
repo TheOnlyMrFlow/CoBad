@@ -4,11 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using Cobad.Domaine;
+using Cobad.Domaine.PortsSecondaires;
+using Cobad.Domaine.Metier;
 using Cobad.Domaine.PortsSecondaires.Persistence;
 
 namespace ImportCompetitionXML
 {
-    public class ImporteurDeCompetitionParFichierXML
+
+    public class ImporteurDeCompetitionParFichierXML : IImporteurDeCompetition
     {
         IFrontierePersistance moyenDePersistance;
         public ImporteurDeCompetitionParFichierXML(IFrontierePersistance moyenDePersistance)
@@ -16,29 +19,37 @@ namespace ImportCompetitionXML
             this.moyenDePersistance = moyenDePersistance;
         }
 
-        //public void ImporterFichierXML(string cheminCompletDuFichier)
-        //{
-        //    var fichierXML = XDocument.Load(cheminCompletDuFichier);
-        //    var competition = ExtraireCompetitionDe(fichierXML);
 
-        //    repertoireCompetitions.Ajouter(competition);
+        public Competition ExtraireCompetitionDe(string cheminDuFichier, bool sauvegarder = false)
+        {
+            return ExtraireCompetitionDe(XDocument.Load(cheminDuFichier), sauvegarder);
+        }
 
-
-        //}
-
-        public Competition ExtraireCompetitionDe(XDocument fichier)
+        public Competition ExtraireCompetitionDe(XDocument fichier, bool sauvegarder = false)
         {
             var elementXmlCompetition = fichier.Root;
 
-            return new Competition {
+            var competition = new Competition
+            {
                 Nom = elementXmlCompetition.Element("TOURNAMENT").Attribute("NAME").Value,
                 Date = StringVersDate(elementXmlCompetition.Element("TOURNAMENT").Attribute("DATE").Value),
                 Tableaux = ExtraireTableauxDe(elementXmlCompetition)
             };
 
+            if (sauvegarder)
+            {
+                if (moyenDePersistance.RepertoireCompetitions.Existe(competition.Nom))
+                {
+                    throw new DuplicationException();
+                }
+                moyenDePersistance.RepertoireCompetitions.Ajouter(competition);
+            }
+
+            return competition;
+
         }
 
-        
+
         public DateTime StringVersDate(string date)
         {
             var dateDecoupee = date.Split('-');
@@ -54,7 +65,8 @@ namespace ImportCompetitionXML
         {
             return
                 from tableau in competition.Elements("EVENT")
-                select new Tableau {
+                select new Tableau
+                {
                     Nom = tableau.Attribute("NAME").Value,
                     Id = int.Parse(tableau.Attribute("IDEVENT").Value),
                     Categorie = tableau.Attribute("CATEGORY").Value,
@@ -68,7 +80,8 @@ namespace ImportCompetitionXML
         {
             return
                 from round in tableau.Elements("ROUND")
-                select new Round {
+                select new Round
+                {
                     Nom = round.Attribute("NAME").Value,
                     Matchs = ExtraireMatchsDe(round),
                     Id = int.Parse(round.Attribute("IDROUND").Value),
@@ -83,62 +96,80 @@ namespace ImportCompetitionXML
             return
                 from match in round.Elements("MATCH")
                 let pairs = match.Elements("PAIR")
-                select new Match {
+                select new Match
+                {
                     Id = int.Parse(match.Attribute("IDMATCH").Value),
                     Abandon = pairs.Where(p => p.Attribute("WITHDRAWN").Value == "1").Any(),
                     Forfait = pairs.Where(p => p.Attribute("RETIRED").Value == "1").Any(),
-                    ScoresA = ExtraireScoresDe(pairs.First()),
-                    ScoresB = ExtraireScoresDe(pairs.Last()),
+                    Sets = ExtraireSetsDe(match),
                     EquipeA = ExtraireEquipeDe(pairs.First()),
                     EquipeB = ExtraireEquipeDe(pairs.Last())
                 };
         }
 
-
-        private int[] ExtraireScoresDe(XElement pair)
+        public Set[] ExtraireSetsDe(XElement match)
         {
-            var scoring = pair.Element("SCORING");
 
-            var scores = new List<int>();
+            var pairs = match.Elements("PAIR");
+            var scoringA = pairs.First().Element("SCORING");
+            var scoringB = pairs.ElementAt(1).Element("SCORING");
 
+            var sets = new List<Set>();
 
-            var attributSet1 = scoring.Attribute("SET1");
-            var valeurSet1 = int.Parse(attributSet1.Value);
-            scores.Add(valeurSet1);
+            sets.Add(
+                new Set
+                {
+                    ScoreA = int.Parse(scoringA.Attribute("SET1").Value),
+                    ScoreB = int.Parse(scoringB.Attribute("SET1").Value)
+                }
+            );
 
-            var attributSet2 = scoring.Attribute("SET2");
-            if (attributSet2 != null)
+            if (scoringA.Attribute("SET2") != null)
             {
-                var valeurSet2 = int.Parse(attributSet2.Value);
-                scores.Add(valeurSet2);
+
+                sets.Add(
+                    new Set
+                    {
+                        ScoreA = int.Parse(scoringA.Attribute("SET2").Value),
+                        ScoreB = int.Parse(scoringB.Attribute("SET2").Value)
+                    }
+                );
             }
 
-            var attributSet3 = scoring.Attribute("SET3");
-            if (attributSet3 != null)
+            if (scoringA.Attribute("SET3") != null)
             {
-                var valeurSet3 = int.Parse(attributSet3.Value);
-                scores.Add(valeurSet3);
+
+                sets.Add(
+                    new Set
+                    {
+                        ScoreA = int.Parse(scoringA.Attribute("SET3").Value),
+                        ScoreB = int.Parse(scoringB.Attribute("SET3").Value),
+                    }
+                );
             }
 
-            return scores.ToArray();
+            return sets.ToArray();
 
         }
 
+
         private Joueur[] ExtraireEquipeDe(XElement pair)
         {
+
             var query =
                 from joueur in pair.Elements("PLAYER")
+                let licenseJoueurSupposee = int.Parse(joueur.Attribute("IDPERS").Value)
+                let existe = moyenDePersistance.RepertoireJoueurs.Existe(licenseJoueurSupposee)
+                let license = existe ? licenseJoueurSupposee : 0
                 select
                     moyenDePersistance.
-                    RepertoireJoueurs.
-                    ObtenirJoueurParLicense(
-                        int.Parse(
-                            joueur.Attribute("IDPERS").Value
-                            )
-                        );
+                        RepertoireJoueurs.
+                        ObtenirJoueurParLicense(
+                            license
+                            );
 
             return query.ToArray();
-            
+
         }
 
     }

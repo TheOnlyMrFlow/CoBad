@@ -12,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Domaine\Cobad.Domaine\Cobad.Domaine.csproj" />
     <ProjectReference Include="..\..\Infrastructure\AccesBDDPoona\AccesseurPoonaCSV\AccesseurPoonaCSV.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ImportCompetition\ImportCompetitionXML\ImportCompetitionXML.csproj" />
   </ItemGroup>
 
 </Project>

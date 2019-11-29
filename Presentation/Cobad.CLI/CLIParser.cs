@@ -4,6 +4,7 @@ using Cobad.CLI.Commandes;
 using Cobad.Domaine;
 using Cobad.Domaine.Metier;
 using Cobad.Domaine.PortsSecondaires.AccesPoona;
+using Cobad.Domaine.PortsSecondaires;
 using CommandLine;
 
 namespace Cobad.CLI
@@ -15,6 +16,7 @@ namespace Cobad.CLI
         private IGestionaireJoueurs gestionaireJoueurs;
         private IGestionaireCollectifs gestionaireCollectifs;
         private IAccesseurPoona accesseurPoona;
+        private IImporteurDeCompetition importeurCompetition;
 
         public CLIParser(FrontiereCobad frontiereCobad)
         {
@@ -22,6 +24,7 @@ namespace Cobad.CLI
             this.gestionaireCollectifs = frontiereCobad.GestionaireCollectifs;
             this.gestionaireJoueurs = frontiereCobad.GestionaireJoueurs;
             this.accesseurPoona = frontiereCobad.AccesseurPoona;
+            this.importeurCompetition = frontiereCobad.ImporteurCompetition;
         }
 
         public int Parse(string[] args)
@@ -36,7 +39,8 @@ namespace Cobad.CLI
                     AjouterPersonnel,
                     ListerClubs,
                     ListerJoueurs,
-                    SynchroniserParCSV>(args)
+                    SynchroniserParCSV,
+                    ImporterCompetition>(args)
                 .MapResult(
                     (CreerCollectif cmd) => cmd.Run(gestionaireCollectifs, gestionaireJoueurs),
                     (ModifierContactJoueur cmd) => cmd.Run(gestionaireJoueurs),
@@ -44,6 +48,7 @@ namespace Cobad.CLI
                     (ListerClubs cmd) => cmd.Run(gestionaireClubs.ObtenirFiltreDeClub()),
                     (ListerJoueurs cmd) => cmd.Run(gestionaireJoueurs.ObtenirFiltreDeJoueur()),
                     (SynchroniserParCSV cmd) => cmd.Run((AccesseurPoonaParFichierCSV) accesseurPoona, gestionaireClubs, gestionaireJoueurs),
+                    (ImporterCompetition cmd) => cmd.Run((importeurCompetition)),
                     errs => 1);
         }
 
